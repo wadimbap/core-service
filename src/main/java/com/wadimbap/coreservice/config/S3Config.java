@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * Конфигурационный класс для настройки Amazon S3 клиента.
+ */
 @Configuration
 public class S3Config {
 
@@ -20,6 +23,11 @@ public class S3Config {
     @Value("${cloud.aws.region.static}")
     private String region;
 
+    /**
+     * Создает и настраивает экземпляр {@link AmazonS3} с использованием предоставленных учетных данных и региона.
+     *
+     * @return настроенный экземпляр {@link AmazonS3}
+     */
     @Bean
     public AmazonS3 amazonS3() {
         BasicAWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);

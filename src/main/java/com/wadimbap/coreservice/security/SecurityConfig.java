@@ -14,17 +14,32 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+/**
+ * Конфигурационный класс для настройки безопасности приложения.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
     private final UserRepository userRepository;
 
+    /**
+     * Конструктор, который принимает репозиторий пользователей.
+     *
+     * @param userRepository репозиторий пользователей
+     */
     @Autowired
     public SecurityConfig(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
+    /**
+     * Настройка цепочки фильтров безопасности.
+     *
+     * @param http объект для настройки безопасности HTTP
+     * @return настроенная цепочка фильтров безопасности
+     * @throws Exception если возникает ошибка во время конфигурации
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.
@@ -38,16 +53,25 @@ public class SecurityConfig {
                         .loginPage("/login")
                         .permitAll()
                 )
-                .logout(LogoutConfigurer::permitAll
-                )
+                .logout(LogoutConfigurer::permitAll)
                 .build();
     }
 
+    /**
+     * Определение кодировщика паролей.
+     *
+     * @return объект для кодирования паролей
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * Сервис для загрузки пользовательских данных.
+     *
+     * @return сервис для загрузки пользовательских данных
+     */
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> userRepository.findByUsername(username)
