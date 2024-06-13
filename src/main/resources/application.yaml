@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/coreservicedb
+    username: root
+    password: y2kvadim24
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+rabbitmq:
+  host: localhost
+  port: 5672
+  username: guest
+  password:
+cloud:
+  aws:
+    region:
+      static: ru-central1
+    credentials:
+      accessKey: ${YANDEX_ACCESS_KEY}
+      secretKey: ${YANDEX_SECRET_KEY}
+    s3:
+      bucket-name: cloud-service
