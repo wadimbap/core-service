@@ -30,16 +30,6 @@ public class ImageController {
         imageService.uploadImages(userId, files);
     }
 
-    /**
-     * Метод для получения списка изображений, загруженных пользователем.
-     *
-     * @param userId идентификатор пользователя
-     * @return список изображений пользователя
-     */
-    @GetMapping("/list")
-    public List<Image> listImages(@RequestParam("userId") Long userId) {
-        return imageService.findAllUserImages(userId);
-    }
 
     /**
      * Метод для получения отсортированного списка изображений, загруженных пользователем.
