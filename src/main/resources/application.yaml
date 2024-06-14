@@ -9,11 +9,11 @@ spring:
     show-sql: true
     properties:
       hibernate:
-rabbitmq:
-  host: localhost
-  port: 5672
-  username: guest
-  password: guest
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 cloud:
   aws:
     region:
